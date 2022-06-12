@@ -1,0 +1,50 @@
+name: Generate eMail Template
+
+on: [workflow_dispatch]
+
+jobs:
+  generate-email-signature:
+    name: Generate eMail Signature
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 17.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.x
+      - name: Populate Config.json
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          MOBILE_PHONE_NUMBER: ${{ secrets.MOBILE_PHONE_NUMBER }}
+          THEME: dark
+        run: |
+          cd templates/${{ env.THEME }}
+          # Create config.json file
+          touch config.json > config.json
+          echo {                                                                                                  > config.json
+          echo    "id": "${{ env.THEME }}",                                                                       >> config.json
+          echo    "signature": "Best regards,",                                                                   >> config.json
+          echo    "name": "The ${{ env.THEME }}" mail team",                                                      >> config.json
+          echo    "contactMain": "Call <a href='tel:004580100100'><span>(45) 80100100</span></a> or email us at", >> config.json
+          echo    "contactMail": "info@${{ env.THEME }}".dk",                                                     >> config.json
+          echo    "slogan": "LED Pylon. LED Wall. Digital Signage.",                                              >> config.json
+          echo    "logoUrl": "/assets/${{ env.THEME }}".png",                                                     >> config.json
+          echo    "logoAlt": "${{ env.THEME }}" logo",                                                            >> config.json
+          echo    "website": "http://${{ env.THEME }}".dk"                                                        >> config.json
+          echo }                                                                                                  >> config.json
+      - name: Install NPM and Generate Signature
+        run: |
+          npm -v
+          node -v
+          npm install
+          npm start
+      - name: Upload to S3
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'dist'
+
+
