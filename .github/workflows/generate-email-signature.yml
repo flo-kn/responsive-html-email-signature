@@ -37,6 +37,7 @@ jobs:
           echo    "logoAlt": "${{ env.THEME }}" logo",                                                            >> config.json
           echo    "website": "http://${{ env.THEME }}".dk"                                                        >> config.json
           echo }                                                                                                  >> config.json
+          cat config.json
       - name: Install NPM and Generate Signature
         run: |
           npm -v
