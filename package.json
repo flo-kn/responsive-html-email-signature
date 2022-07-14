@@ -34,10 +34,10 @@
     "_test:watch": "./node_modules/.bin/ava --watch"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.4",
+    "autoprefixer": "^10.4.7",
     "chalk": "^4.0.0",
     "cheerio": "^0.22.0",
-    "del": "^6.0.0",
+    "del": "^6.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-david": "^1.0.1",
@@ -54,7 +54,7 @@
     "gulp-sass": "^5.1.0",
     "klaw": "^4.0.1",
     "plugin-error": "^1.0.1",
-    "sass": "^1.49.9",
+    "sass": "^1.53.0",
     "through2": "^4.0.2"
   },
   "devDependencies": {
@@ -62,12 +62,12 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "graceful-fs": "^4.2.4",
+    "eslint-plugin-standard": "^4.1.0",
+    "graceful-fs": "^4.2.10",
     "gulp-cli": "^2.3.0",
     "opencollective-postinstall": "^2.0.3",
     "prettier": "^1.19.1",
