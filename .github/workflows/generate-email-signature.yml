@@ -27,15 +27,15 @@ jobs:
           # Create config.json file
           touch config.json > config.json
           echo {                                                                                                  > config.json
-          echo    "id": "${{ env.THEME }}",                                                                       >> config.json
-          echo    "signature": "Best regards,",                                                                   >> config.json
-          echo    "name": "The ${{ env.THEME }} mail team",                                                       >> config.json
-          echo    "contactMain": "Call <a href='tel:004580100100'><span>(45) 80100100</span></a> or email us at", >> config.json
-          echo    "contactMail": "info@${{ env.THEME }}.dk",                                                     >> config.json
-          echo    "slogan": "LED Pylon. LED Wall. Digital Signage.",                                              >> config.json
-          echo    "logoUrl": "/assets/${{ env.THEME }}.png",                                                     >> config.json
-          echo    "logoAlt": "${{ env.THEME }} logo",                                                            >> config.json
-          echo    "website": "http://${{ env.THEME }}.dk"                                                        >> config.json
+          echo    "\"id"\": "\"${{ env.THEME }}"\",                                                                       >> config.json
+          echo    "\"signature"\": "\"Best regards,"\",                                                                   >> config.json
+          echo    "\"name"\": "\"The ${{ env.THEME }} mail team"\",                                                       >> config.json
+          echo    "\"contactMain"\": "\"Call <a href='tel:004580100100'><span>(45) 80100100</span></a> or email us at"\", >> config.json
+          echo    "\"contactMail"\": "\"info@${{ env.THEME }}.dk"\",                                                     >> config.json
+          echo    "\"slogan"\": "\"LED Pylon. LED Wall. Digital Signage."\",                                              >> config.json
+          echo    "\"logoUrl"\": "\"/assets/${{ env.THEME }}.png"\",                                                     >> config.json
+          echo    "\"logoAlt"\": "\"${{ env.THEME }} logo"\",                                                            >> config.json
+          echo    "\"website"\": "\"http://${{ env.THEME }}.dk"\"                                                        >> config.json
           echo }                                                                                                  >> config.json
           cat config.json
       - name: Install NPM and Generate Signature
