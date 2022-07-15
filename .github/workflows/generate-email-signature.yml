@@ -43,7 +43,7 @@ jobs:
           npm -v
           node -v
           npm install
-          npm start
+          npm once
       - name: Upload to S3
         uses: shallwefootball/s3-upload-action@master
         with:
