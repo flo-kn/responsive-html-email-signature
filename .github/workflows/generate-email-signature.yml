@@ -50,11 +50,9 @@ jobs:
           npm run once
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
-        env: 
-          region: eu-central-1
         with:
           role-to-assume: ${{ secrets.DEPLOYMENT_ROLE }}
-          aws-region: $region
+          aws-region:  eu-central-1
       - name: Upload to S3
         env:
           bucket_name: ${{ secrets.BUCKET_NAME }}
