@@ -9,6 +9,10 @@ jobs:
   generate-email-signature:
     name: Generate eMail Signature
     runs-on: ubuntu-latest
+    permissions:
+      # Ignore validation error - this line is necessary
+      id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v2
@@ -44,12 +48,19 @@ jobs:
           node -v
           npm install
           npm run once
-      - name: Upload to S3
-        uses: shallwefootball/s3-upload-action@master
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        env: 
+          region: eu-central-1
         with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: 'dist'
+          role-to-assume: ${{ secrets.DEPLOYMENT_ROLE }}
+          aws-region: $region
+      - name: Upload to S3
+        env:
+          bucket_name: ${{ secrets.BUCKET_NAME }}
+          local_source_dir: './dist'
+          remote_dir: generated-email-signatures
+        run: |
+          aws cp $local_source_dir S3://$bucket_name/$remote_dir
 
 
