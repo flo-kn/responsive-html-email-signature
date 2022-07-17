@@ -51,7 +51,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ secrets.GH_GENERATE_EMAIL_ROLE }}  
+          role-to-assume: ${{ secrets.GH_GENERATE_EMAIL_ROLE }}   arn:aws:iam::532401623664:role/GithubGenerateEmailRole
           aws-region:  eu-central-1
       - name: Upload to S3
         env:
@@ -60,6 +60,4 @@ jobs:
           remote_dir: generated-email-signatures
         run: |
           aws cp $local_source_dir S3://$bucket_name/$remote_dir
-
-
 
