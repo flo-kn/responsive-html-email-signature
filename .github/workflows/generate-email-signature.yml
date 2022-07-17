@@ -53,12 +53,12 @@ jobs:
         with:
           role-to-assume: ${{ secrets.GH_GENERATE_EMAIL_ROLE }}
           aws-region:  eu-central-1
-      - name: Upload to S3
+      - name: Upload Signature to S3
         env:
           bucket_name: ${{ secrets.BUCKET_NAME }}
           local_source_dir: './dist'
           remote_dir: generated-email-signatures
         run: |
-          aws s3 cp $local_source_dir S3://$bucket_name/$remote_dir
+          aws s3 cp $local_source_dir s3://$bucket_name/$remote_dir
 
 
