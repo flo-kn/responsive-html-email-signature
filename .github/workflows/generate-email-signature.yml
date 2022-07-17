@@ -59,6 +59,6 @@ jobs:
           local_source_dir: './dist'
           remote_dir: generated-email-signatures
         run: |
-          aws cp $local_source_dir S3://$bucket_name/$remote_dir
+          aws s3 cp $local_source_dir S3://$bucket_name/$remote_dir
 
 
