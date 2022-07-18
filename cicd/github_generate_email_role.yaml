@@ -1,0 +1,52 @@
+Parameters:
+  GitHubOrg:
+    Type: String
+    Default: flo-kn
+  RepoName:
+    Type: String
+    Default: responsive-html-email-signature
+  OIDCProviderArn:
+    Description: Arn for the GitHub OIDC Provider.
+    Default: ""
+    Type: String
+
+Conditions:
+  CreateOIDCProvider: !Equals 
+    - !Ref OIDCProviderArn
+    - ""
+
+Resources:
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: GithubGenerateEmailRole
+      ManagedPolicyArns: ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Sid: "GithubOIDC"
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated: !If 
+                - CreateOIDCProvider
+                - !Ref GithubOidc
+                - !Ref OIDCProviderArn
+            Condition:
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepoName}:*
+  
+
+  GithubOidc:
+    Type: AWS::IAM::OIDCProvider
+    Condition: CreateOIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList: 
+        - sts.amazonaws.com
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+
+Outputs:
+  Role:
+    Value: !GetAtt Role.Arn 
+

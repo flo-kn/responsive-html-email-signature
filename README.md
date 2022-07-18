@@ -24,6 +24,11 @@ Here are some examples:
 - Run `npm install`
 - Run `npm start` to generate templates from configuration. This will continue to watch your files and re-make the template until you exit.
 
+Alternative: Use the Github Actions to generate and store your signature in a safe cloud storage
+
+Deploy the role:
+- `aws cloudformation deploy --template-file cicd/github_generate_email_role.yaml --stack-name githubOidcGenerateEmail --capabilities CAPABILITY_NAMED_IAM`
+
 ### Customizing templates
 
 - Edit files in _/templates_
