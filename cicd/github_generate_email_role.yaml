@@ -64,4 +64,3 @@ Resources:
 Outputs:
   Role:
     Value: !GetAtt Role.Arn 
-
