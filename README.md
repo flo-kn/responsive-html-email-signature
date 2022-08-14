@@ -28,7 +28,7 @@ Here are some examples:
 
 Use the Github Actions Workflow to automatically generate and store your signature in a cloud storage (e.g. S3 Bucket)
 
-1) create the bucket using [AWS CLI](https://aws.amazon.com/cli/): 
+1) Create the bucket to store the signature using [AWS CLI](https://aws.amazon.com/cli/): 
 
    `aws s3 mb s3://<BUCKET_NAME>`
 
@@ -40,11 +40,11 @@ Use the Github Actions Workflow to automatically generate and store your signatu
 
    > *details on [Github's OIDC with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)*
 
-3) Populate the secret values in the the repo's settings tab EMAIL_ADDRESS, MOBILE_PHONE_COUNTRY_CODE, MOBILE_PHONE_NUMBER
+3) Populate the secret values `EMAIL_ADDRESS`, `MOBILE_PHONE_COUNTRY_CODE`, and `MOBILE_PHONE_NUMBER` in [the repo's settings tab](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 
-3) Trigger the [`generate-email-signature`](./.github/workflows/generate-email-signature.yml) workflow
+3) Trigger the [`generate-email-signature`](./.github/workflows/generate-email-signature.yml) workflow via [manual dispatch](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/)
 
-4) Download Signature from S3 Bucket
+4) Congrats! 🥳 Your signature has been uploaded. You can now download it from your S3 Bucket.
 
 ### Customizing templates
 
