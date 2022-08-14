@@ -1,10 +1,10 @@
 Parameters:
   GitHubOrg:
     Type: String
-    Default: flo-kn
+    Default: <YourGitHubOrg||YourGitHubUsername>
   RepoName:
     Type: String
-    Default: responsive-html-email-signature
+    Default: <YourRepoName>
   OIDCProviderArn:
     Description: Arn for the GitHub OIDC Provider.
     Default: ""
@@ -33,8 +33,8 @@ Resources:
               - s3:GetObjectAcl
               - s3:AbortMultipartUpload
               Resource:
-              - arn:aws:s3:::knip-builds-email-signature
-              - arn:aws:s3:::knip-builds-email-signature/*
+              - arn:aws:s3:::<BucketName>
+              - arn:aws:s3:::<BucketName>/*
               Effect: Allow
       AssumeRolePolicyDocument:
         Statement:
