@@ -24,16 +24,25 @@ Here are some examples:
 - Run `npm install`
 - Run `npm start` to generate templates from configuration. This will continue to watch your files and re-make the template until you exit.
 
-## Automation
+## Automate Signature Creation
 
-Use the Github Actions Workflow to automatically generate and store your signature in a safe cloud storage (S3 Bucket)
+Use the Github Actions Workflow to automatically generate and store your signature in a cloud storage (e.g. S3 Bucket)
 
-1) Deploy the role with permission to upload signature into your accounts S3 Bucket
-`aws cloudformation deploy --template-file cicd/github_generate_email_role.yaml --stack-name githubOidcGenerateEmail --capabilities CAPABILITY_NAMED_IAM`
+1) create the bucket using [AWS CLI](https://aws.amazon.com/cli/): 
 
-2) Trigger the [`generate-email-signature`](./.github/workflows/generate-email-signature.yml) workflow
+   `aws s3 mb s3://<BUCKET_NAME>`
 
-3) Download Signature from S3 Bucket
+   > *where BUCKET_NAME is the unique name of your s3 bucket*
+
+2) Deploy the role with permission to upload signature into your accounts S3 Bucket 
+
+   `aws cloudformation deploy --template-file cicd/github_generate_email_role.yaml --stack-name githubOidcGenerateEmail --capabilities CAPABILITY_NAMED_IAM`
+
+   > *details on [Github's OIDC with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)*
+
+3) Trigger the [`generate-email-signature`](./.github/workflows/generate-email-signature.yml) workflow
+
+4) Download Signature from S3 Bucket
 
 ### Customizing templates
 
