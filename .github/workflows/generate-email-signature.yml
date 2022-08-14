@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 18.x
-      - name: Populate Config.json
+      - name: Populate conf.json
         working-directory: templates/${{ env.THEME }}
         env:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
