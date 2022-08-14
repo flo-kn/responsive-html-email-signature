@@ -29,7 +29,7 @@ jobs:
           MOBILE_PHONE_NUMBER: ${{ secrets.MOBILE_PHONE_NUMBER }}
           THEME: dark
         run: |
-          npm generate:conf ${{ env.THEME }}
+          npm run generate:conf ${{ env.THEME }}
       - name: Install NPM and Generate Signature
         run: |
           npm -v
