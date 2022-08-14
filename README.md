@@ -40,6 +40,8 @@ Use the Github Actions Workflow to automatically generate and store your signatu
 
    > *details on [Github's OIDC with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)*
 
+3) Populate the secret values in the the repo's settings tab EMAIL_ADDRESS, MOBILE_PHONE_COUNTRY_CODE, MOBILE_PHONE_NUMBER
+
 3) Trigger the [`generate-email-signature`](./.github/workflows/generate-email-signature.yml) workflow
 
 4) Download Signature from S3 Bucket

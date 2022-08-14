@@ -1,9 +1,6 @@
 name: Generate eMail Template
-# on: [workflow_dispatch]
 on:
-  push:
-    branches: 
-      - feat/actionGenerateSignature
+  workflow_dispatch: 
 
 jobs:
   generate-email-signature:
