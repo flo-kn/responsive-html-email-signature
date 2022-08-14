@@ -20,7 +20,22 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: GithubGenerateEmailRole
-      ManagedPolicyArns: ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+      # ManagedPolicyArns: ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+      Policies:
+        - PolicyName: GithubGenerateEmailRolePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Action:
+              - s3:PutObject
+              - s3:PutObjectAcl
+              - s3:GetObject
+              - s3:GetObjectAcl
+              - s3:AbortMultipartUpload
+              Resource:
+              - arn:aws:s3:::knip-builds-email-signature
+              - arn:aws:s3:::knip-builds-email-signature/*
+              Effect: Allow
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
